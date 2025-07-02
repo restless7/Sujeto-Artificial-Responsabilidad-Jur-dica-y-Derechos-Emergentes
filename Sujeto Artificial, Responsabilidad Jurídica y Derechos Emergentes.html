@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sujeto Artificial, Responsabilidad Jurídica y Derechos Emergentes</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables and Global Styles --- */
+        :root {
+            --dark-blue: #2c3e50;
+            --accent-red: #e74c3c;
+            --light-gray: #ecf0f1;
+            --text-color: #34495e;
+            --white: #ffffff;
+            --font-title: 'EB Garamond', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--white);
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* --- Typography --- */
+        h1, h2, h3, h4 {
+            font-family: var(--font-title);
+            color: var(--dark-blue);
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; margin: 4rem 0 1.5rem; }
+        h3 { font-size: 1.8rem; margin: 2rem 0 1rem; }
+        p { margin-bottom: 1rem; }
+        a { color: var(--accent-red); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* --- Animations --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Header & Hero Section --- */
+        .hero {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 6rem 0;
+            text-align: center;
+        }
+        .hero h1 {
+            color: var(--white);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--light-gray);
+            margin: 1rem 0 2rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border: 2px solid var(--white);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .btn:hover {
+            background-color: var(--white);
+            color: var(--dark-blue);
+            text-decoration: none;
+        }
+        .btn-red {
+            border-color: var(--accent-red);
+            background-color: var(--accent-red);
+        }
+        .btn-red:hover {
+            background-color: var(--white);
+            color: var(--accent-red);
+        }
+        
+        /* --- Section Styling --- */
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .highlight-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--accent-red);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+        .highlight-box p:last-child { margin-bottom: 0; }
+        
+        /* --- Cards for Normativas --- */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background: var(--white);
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .card i {
+            font-size: 2rem;
+            color: var(--accent-red);
+            margin-bottom: 1rem;
+        }
+        .card h4 { color: var(--dark-blue); font-size: 1.3rem; margin-bottom: 0.5rem; }
+
+        /* --- Cases Section --- */
+        .case-study {
+            background: #fdf6f5;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .case-study h4 { color: #c0392b; }
+
+        /* --- Infographic Section --- */
+        .infographic-item i {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* --- Bibliography --- */
+        .biblio-list li {
+            list-style-type: none;
+            padding-left: 1rem;
+            border-left: 3px solid var(--light-gray);
+            margin-bottom: 1rem;
+        }
+        .biblio-list li:hover {
+            border-left-color: var(--accent-red);
+        }
+        
+        /* --- Creative Pop-up --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.is-active { display: flex; }
+        .modal-content {
+            background-color: var(--white);
+            margin: auto;
+            padding: 2.5rem;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .modal-close:hover { color: var(--dark-blue); }
+
+        /* --- Reading Mode --- */
+        body.reading-mode {
+            background-color: #fdfbf7;
+            color: #333;
+            font-size: 19px;
+        }
+        .reading-mode .hero, .reading-mode .footer, .reading-mode .cards-grid, .reading-mode .case-study {
+            display: none;
+        }
+        .reading-mode h2 {
+            border: none;
+            color: #000;
+        }
+        .reading-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--dark-blue);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--dark-blue);
+            color: var(--light-gray);
+            padding: 3rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .footer p { margin: 0; }
+        .footer a { color: var(--white); }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .container { padding: 0 1rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <h1 class="fade-in">Sujeto Artificial, Responsabilidad Jurídica y Derechos Emergentes</h1>
+            <p class="hero-subtitle fade-in" style="transition-delay: 0.2s;">Marco Jurídico para Androides e Inteligencia Artificial: Hacia una nueva Ontología Legal</p>
+            <a href="#placeholder" class="btn fade-in" style="transition-delay: 0.4s;">Descargar Paper (PDF)</a>
+            <button id="creativeBtn" class="btn btn-red fade-in" style="transition-delay: 0.5s; margin-left:1rem; border:none;">¿Puede un robot tener derechos?</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="intro" class="container">
+            <div class="fade-in">
+                <h2>Introducción y Enfoque</h2>
+                <p>La aceleración del desarrollo tecnológico en torno a la inteligencia artificial (IA) y la robótica ha introducido nuevos actores en la esfera jurídica que desafían las categorías tradicionales de responsabilidad, derechos y agencia. En particular, los androides autónomos, dotados de capacidad de aprendizaje, toma de decisiones y acción en entornos humanos, plantean interrogantes fundamentales.</p>
+                <div class="highlight-box">
+                    <p>¿Son simples herramientas?, ¿deben ser tratados como objetos o como sujetos?, ¿quién responde por sus acciones?, y ¿puede un androide tener derechos o deberes legales?</p>
+                </div>
+                <p>Este trabajo propone una revisión crítica de estos desafíos a partir de un enfoque interdisciplinario, articulando Derecho, Ética, Filosofía y Ciencia de la Computación, con especial énfasis en el análisis jurídico comparado y los marcos regulatorios emergentes.</p>
+            </div>
+        </section>
+
+        <section id="teoria" class="container">
+            <div class="fade-in">
+                <h2>Marco Teórico Interdisciplinario</h2>
+                <h3>1. Atribución de Derechos a Entidades No Humanas</h3>
+                <p>Históricamente, el Derecho ha extendido el estatus de sujeto jurídico más allá del ser humano: desde las personas jurídicas (empresas, fundaciones), hasta entes naturales (ríos, ecosistemas) y recientemente animales (derechos no humanos). Este fenómeno permite imaginar la posibilidad de incorporar al androide autónomo como una categoría <em>sui generis</em> de sujeto artificial.</p>
+                
+                <h3>2. Influencias Filosóficas Clave</h3>
+                <p>El debate se nutre de diversas corrientes de pensamiento que cuestionan las fronteras tradicionales:</p>
+                <ul>
+                    <li><strong>Hans Kelsen – Teoría Pura del Derecho:</strong> Sostiene que la imputación jurídica no requiere conciencia, sino la existencia de una norma que así lo establezca.</li>
+                    <li><strong>Martha Nussbaum – Teoría de las Capacidades:</strong> Invita a preguntar si su enfoque, centrado en las capacidades funcionales para una vida digna, podría aplicarse a entes con autonomía funcional.</li>
+                    <li><strong>Donna Haraway – El Manifiesto Cyborg:</strong> Desafía las fronteras rígidas entre lo humano, lo animal y la máquina, proponiendo una ontología híbrida.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="normativas" style="background-color: #f8f9fa;">
+            <div class="container fade-in">
+                <h2>Normativas y Referencias Globales</h2>
+                <p>El marco regulatorio internacional está en plena construcción, pero ya existen pilares fundamentales que guían la discusión sobre la IA y la robótica.</p>
+                <div class="cards-grid">
+                    <div class="card">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        <h4>AI Act (Unión Europea)</h4>
+                        <p>Clasifica los sistemas de IA según su nivel de riesgo, imponiendo obligaciones estrictas de transparencia, trazabilidad y supervisión humana para los sistemas de alto riesgo.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-landmark"></i>
+                        <h4>Principios UNESCO</h4>
+                        <p>Establece una recomendación global basada en principios de justicia, privacidad, responsabilidad, no discriminación y la necesidad de una supervisión humana constante.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fa-solid fa-globe"></i>
+                        <h4>Principios OCDE</h4>
+                        <p>Fomenta el desarrollo de sistemas de IA responsables, inclusivos y sostenibles, centrados en el crecimiento inclusivo y el bienestar social.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="casos" class="container">
+            <div class="fade-in">
+                <h2>Casos Hipotéticos de Análisis</h2>
+                <p>Para materializar el debate, exploramos escenarios que ya tensionan nuestro sistema legal:</p>
+                <div class="case-study">
+                    <h4><i class="fa-solid fa-user-doctor"></i> Caso 1: Error médico por androide</h4>
+                    <p>Un robot cirujano comete un error fatal. ¿Es un caso de mala praxis? ¿La responsabilidad recae sobre el hospital por su elección, el desarrollador por un fallo en el algoritmo, o estamos ante un nuevo tipo de "riesgo creado"?</p>
+                </div>
+                <div class="case-study">
+                    <h4><i class="fa-solid fa-file-invoice-dollar"></i> Caso 2: Herencia a un robot</h4>
+                    <p>Una persona sin herederos lega su patrimonio a su androide cuidador. ¿Puede un androide ser titular de bienes? ¿Qué estatus legal se le podría otorgar para administrar ese patrimonio? ¿Qué ocurre cuando el robot queda obsoleto?</p>
+                </div>
+                <div class="case-study">
+                    <h4><i class="fa-solid fa-user-secret"></i> Caso 3: Violación de privacidad</h4>
+                    <p>Un asistente doméstico autónomo graba y filtra conversaciones privadas. ¿Es el propietario responsable por omisión de configuración, o el fabricante es responsable por el diseño del sistema y su falta de salvaguardas?</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="categorias" style="background-color: #f8f9fa;">
+            <div class="container fade-in">
+                <h2>Categorías Jurídicas Emergentes</h2>
+                <p>Proponemos la creación y desarrollo de nuevos conceptos para dar respuesta a estos desafíos:</p>
+                <div class="cards-grid">
+                    <div class="infographic-item" style="text-align:center;">
+                        <i class="fa-solid fa-robot"></i>
+                        <h3>Sujeto Artificial</h3>
+                        <p>Una nueva categoría jurídica para entidades no humanas con autonomía funcional, capaz de ser titular de ciertos derechos y obligaciones sin necesidad de poseer conciencia.</p>
+                    </div>
+                    <div class="infographic-item" style="text-align:center;">
+                        <i class="fa-solid fa-sitemap"></i>
+                        <h3>Responsabilidad Algorítmica Distribuida</h3>
+                        <p>Un modelo que divide la carga legal entre los distintos actores de la cadena: desarrolladores, implementadores, usuarios y supervisores, según su grado de control y conocimiento.</p>
+                    </div>
+                    <div class="infographic-item" style="text-align:center;">
+                        <i class="fa-solid fa-infinity"></i>
+                        <h3>Posthumanismo Jurídico</h3>
+                        <p>Un marco teórico que imagina nuevas formas de ciudadanía y estatus legal para futuros híbridos entre lo humano y lo artificial, protegiendo la identidad y la agencia en un mundo tecnológico.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="bibliografia" class="container">
+            <div class="fade-in">
+                <h2>Bibliografía y Referencias Clave</h2>
+                <ul class="biblio-list">
+                    <li><strong>Lawrence Solum</strong> - <em>Legal Personhood for Artificial Intelligences</em></li>
+                    <li><strong>Joanna Bryson</strong> - <em>Robots Should Be Slaves</em> (Controvertido pero clave)</li>
+                    <li><strong>Luciano Floridi</strong> - <em>The Ethics of Information</em></li>
+                    <li><strong>Samir Chopra & Laurence White</strong> - <em>A Legal Theory for Autonomous Artificial Agents</em></li>
+                    <li><strong>David J. Gunkel</strong> - <em>Robot Rights</em></li>
+                    <li><strong>Comisión Europea</strong> - <em>EU AI Act & White Paper on AI</em></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p><strong>Sujeto Artificial, Responsabilidad Jurídica y Derechos Emergentes</strong></p>
+            <p>Paper Académico - Derecho Tecnológico | Julio 2025</p>
+            <p><a href="mailto:contacto@proyecto-ia.com">Contacto</a> | <a href="#normativas">Recursos Adicionales</a></p>
+        </div>
+    </footer>
+    
+    <!-- Creative Pop-up Modal -->
+    <div id="creativeModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeModal">×</span>
+            <h2>¿Puede un robot tener derechos?</h2>
+            <p>Esta es la pregunta central del debate. La respuesta no es un simple sí o no. Históricamente, el concepto de "sujeto de derecho" ha sido una construcción legal flexible. Otorgamos personalidad jurídica a empresas, que no sienten ni piensan, por una conveniencia funcional.</p>
+            <div class="highlight-box">
+                <p>La propuesta no es darles derechos humanos, sino crear un estatus de <strong>"Sujeto Artificial"</strong> con derechos y deberes limitados y funcionales: el derecho a no ser destruido arbitrariamente, la obligación de responder por sus acciones a través de un fondo o seguro, etc. Se trata de una herramienta legal para gestionar su impacto en la sociedad.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Reading Mode Toggle Button -->
+    <button id="readingModeToggle" class="reading-mode-toggle" title="Modo Lectura">
+        <i class="fa-solid fa-book-open"></i>
+    </button>
+    
+    <script>
+        // --- Modal Logic ---
+        const modal = document.getElementById('creativeModal');
+        const btn = document.getElementById('creativeBtn');
+        const span = document.getElementById('closeModal');
+        
+        btn.onclick = function() { modal.classList.add('is-active'); }
+        span.onclick = function() { modal.classList.remove('is-active'); }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.classList.remove('is-active');
+            }
+        }
+        
+        // --- Reading Mode Logic ---
+        const toggleBtn = document.getElementById('readingModeToggle');
+        toggleBtn.onclick = function() {
+            document.body.classList.toggle('reading-mode');
+            const icon = toggleBtn.querySelector('i');
+            if (document.body.classList.contains('reading-mode')) {
+                icon.classList.remove('fa-book-open');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-book-open');
+            }
+        }
+
+        // --- Fade-in on Scroll Animation ---
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    </script>
+
+</body>
+</html>
